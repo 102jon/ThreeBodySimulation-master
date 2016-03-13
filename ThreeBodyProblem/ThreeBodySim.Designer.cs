@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThreeBodySim));
             this.startBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -55,7 +56,9 @@
             this.sampleDropBtn = new System.Windows.Forms.ToolStripDropDownButton();
             this.sample1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sample2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeLbl = new System.Windows.Forms.Label();
             this.displayPanel = new ThreeBodyProblem.DisplayPanel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.yVelPlanet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xVelPlanet3)).BeginInit();
@@ -68,7 +71,7 @@
             // 
             // startBtn
             // 
-            this.startBtn.Location = new System.Drawing.Point(577, 524);
+            this.startBtn.Location = new System.Drawing.Point(577, 538);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(126, 23);
             this.startBtn.TabIndex = 0;
@@ -287,7 +290,7 @@
             // resetBtn
             // 
             this.resetBtn.Enabled = false;
-            this.resetBtn.Location = new System.Drawing.Point(577, 553);
+            this.resetBtn.Location = new System.Drawing.Point(577, 567);
             this.resetBtn.Name = "resetBtn";
             this.resetBtn.Size = new System.Drawing.Size(126, 23);
             this.resetBtn.TabIndex = 8;
@@ -321,14 +324,23 @@
             // sample1ToolStripMenuItem
             // 
             this.sample1ToolStripMenuItem.Name = "sample1ToolStripMenuItem";
-            this.sample1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sample1ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.sample1ToolStripMenuItem.Text = "Orbit 1";
             // 
             // sample2ToolStripMenuItem
             // 
             this.sample2ToolStripMenuItem.Name = "sample2ToolStripMenuItem";
-            this.sample2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sample2ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.sample2ToolStripMenuItem.Text = "Orbit 2";
+            // 
+            // timeLbl
+            // 
+            this.timeLbl.AutoSize = true;
+            this.timeLbl.Location = new System.Drawing.Point(590, 510);
+            this.timeLbl.Name = "timeLbl";
+            this.timeLbl.Size = new System.Drawing.Size(104, 13);
+            this.timeLbl.TabIndex = 10;
+            this.timeLbl.Text = "Time Elapsed: 00:00";
             // 
             // displayPanel
             // 
@@ -343,11 +355,17 @@
             this.displayPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.displayPanel_MouseMove);
             this.displayPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.displayPanel_MouseUp);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // ThreeBodySim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 661);
+            this.Controls.Add(this.timeLbl);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.label16);
@@ -403,6 +421,8 @@
         private System.Windows.Forms.ToolStripDropDownButton sampleDropBtn;
         private System.Windows.Forms.ToolStripMenuItem sample1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sample2ToolStripMenuItem;
+        private System.Windows.Forms.Label timeLbl;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

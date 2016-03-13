@@ -99,6 +99,7 @@ namespace ThreeBodyProblem
                 engine.DoWork += engine.backgroundWorker_DoWork;
                 engine.ProgressChanged += engine_ProgressChanged;
                 engine.RunWorkerAsync(planets);
+                timer1.Start();
                 startBtn.Text = "Pause";
                 resetBtn.Enabled = false;
                 toolStrip1.Enabled = false;
@@ -126,6 +127,7 @@ namespace ThreeBodyProblem
                         pln.Velocity[1] *= -1;
                 }
 
+                timer1.Stop();
                 startBtn.Text = "Start";
                 resetBtn.Enabled = true;
                 toolStrip1.Enabled = true;
@@ -140,6 +142,7 @@ namespace ThreeBodyProblem
 
         private void resetBtn_Click(object sender, EventArgs e)
         {
+            timeLbl.Text = "Time Elapsed: 00:00";
             planets[0] = initialState[0].Copy();
             planets[1] = initialState[1].Copy();
             planets[2] = initialState[2].Copy();
@@ -210,6 +213,7 @@ namespace ThreeBodyProblem
         // Here are some preset orbit settings the user can try to see how the application works
         private void sampleDropBtn_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            timeLbl.Text = "Time Elapsed: 00:00";
             firstRun = true;
             xVelPlanet1.Enabled = true;
             yVelPlanet1.Enabled = true;
@@ -255,6 +259,22 @@ namespace ThreeBodyProblem
             planets[0] = new Planet(new Rectangle(pos1[0], pos1[1], size, size), Color.CornflowerBlue, xVelPlanet1.Value, yVelPlanet1.Value);
             planets[1] = new Planet(new Rectangle(pos2[0], pos2[1], size, size), Color.Red, xVelPlanet2.Value, yVelPlanet2.Value);
             planets[2] = new Planet(new Rectangle(pos3[0], pos3[1], size, size), Color.LawnGreen, xVelPlanet3.Value, yVelPlanet3.Value);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int secs = Convert.ToInt32(timeLbl.Text.Split(':')[2]);
+            int mins = Convert.ToInt32(timeLbl.Text.Split(':')[1]);
+
+            if (secs == 59)
+            {
+                mins += 1;
+                secs = 0;
+            }
+            else
+                secs += 1;
+
+            timeLbl.Text = "Time Elapsed: " + mins.ToString("D2") + ":" + secs.ToString("D2");
         }
     }
 
